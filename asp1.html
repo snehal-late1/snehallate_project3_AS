@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bon Voyage Tours - Login</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-size: cover;
+            background-position: center;
+            animation: changeBackground 10s infinite alternate; /* Dynamic Background */
+        }
+
+        @keyframes changeBackground {
+            0% { background-image: url("https://source.unsplash.com/1600x900/?nature"); }
+            50% { background-image: url("https://source.unsplash.com/1600x900/?travel"); }
+            100% { background-image: url("https://source.unsplash.com/1600x900/?adventure"); }
+        }
+
+        form {
+            max-width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.3s ease; /* Animated Login Button */
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        #userData {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        /* Tour Section Styles */
+        #tourSection {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        #tourSection h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        select, input[type="text"], input[type="tel"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+<form onsubmit="showEnteredData(); return false;">
+    <h2>Bon Voyage Tours - Login</h2>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <!-- Tour Section -->
+    <div id="tourSection">
+        <h3>Choose Your Adventure</h3>
+        <label for="tour">Select a Tour:</label>
+        <select id="tour" name="tour">
+            <option value="paris">Paris Tour</option>
+            <option value="rome">Rome Adventure</option>
+            <option value="beach">Beach Getaway</option> <!-- Added new tour -->
+            <option value="mountain">Mountain Expedition</option> <!-- Added new tour -->
+        </select>
+
+        <!-- Add images for each tour option -->
+        <img id="tourImage" src="" alt="Tour Image" style="max-width: 100%; margin-top: 10px; display: none;">
+    </div>
+
+    <!-- Add a new section for phone number -->
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" required>
+
+    <button type="submit">Login</button>
+</form>
+
+<div id="userData">
+    <h3>Entered Data</h3>
+    <ul id="dataList"></ul>
+</div>
+
+<script>
+    function showEnteredData() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var phoneNumber = document.getElementById('phone').value;
+        var selectedTour = document.getElementById('tour').value;
+
+        // Get the selected tour name
+        var tourName = document.getElementById('tour').options[document.getElementById('tour').selectedIndex].text;
+
+        // Determine which tour image to display
+        var tourImage = '';
+        switch (selectedTour) {
+            case 'paris':
+                tourImage = 'https://source.unsplash.com/1600x900/?paris';
+                break;
+            case 'rome':
+                tourImage = 'https://source.unsplash.com/1600x900/?rome';
+                break;
+            case 'beach':
+                tourImage = 'https://source.unsplash.com/1600x900/?beach';
+                break;
+            case 'mountain':
+                tourImage = 'https://source.unsplash.com/1600x900/?mountain';
+                break;
+            default:
+                break;
+        }
+
+        // Show the tour image
+        document.getElementById('tourImage').src = tourImage;
+        document.getElementById('tourImage').style.display = 'block';
+
+        var dataList = document.getElementById('dataList');
+        var listItem = document.createElement('li');
+        listItem.innerHTML = `Username: <strong>${username}</strong>, Password: <strong>${password}</strong>, Phone: <strong>${phoneNumber}</strong>, Tour: <strong>${tourName}</strong>`;
+
+        dataList.appendChild(listItem);
+
+        // Clear input fields after submission
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('tour').selectedIndex = 0; // Reset tour selection
+        document.getElementById('tourImage').style.display = 'none'; // Hide tour image
+    }
+</script>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button to Second Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+
+    #button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>For detailed information of Bon Voyage Tours click on the button below</h1>
+  
+  <button id="button" onclick="goToSecondPage()">Go to Second Page</button>
+
+  <script>
+    function goToSecondPage() {
+      // Redirect to the second web page
+      window.location.href = "C:/Users/lates/OneDrive/Desktop/asp2.html";
+    }
+  </script>
+
+</body>
+</html>

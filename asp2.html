@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>snehal's Encryption Demo</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.1.0/jsencrypt.min.js"></script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f2f2f2;
+        animation: changeBackground 30s infinite alternate;
+    }
+    
+    @keyframes changeBackground {
+        0% { background-color: #f2f2f2; }
+        50% { background-color: #d8e3e7; }
+        100% { background-color: #f2f2f2; }
+    }
+
+    h2 {
+        color: #333;
+    }
+    label {
+        font-weight: bold;
+    }
+    textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+
+<h2>snehal's Encryption Demo</h2>
+
+<label for="plaintext">Enter Text to Encrypt:</label><br>
+<textarea id="plaintext" rows="4" cols="50" placeholder="Type your message here..."></textarea><br>
+
+<button onclick="encryptData()">Encrypt</button><br>
+
+<label for="encryptedText">Encrypted Text:</label><br>
+<textarea id="encryptedText" rows="4" cols="50" readonly></textarea><br>
+
+<button onclick="decryptData()">Decrypt</button><br>
+
+<label for="decryptedText">Decrypted Text:</label><br>
+<textarea id="decryptedText" rows="4" cols="50" readonly></textarea><br>
+
+<script>
+// Generate RSA key pair (public and private keys)
+var crypt = new JSEncrypt({ default_key_size: 2048 });
+crypt.getKey();
+
+function encryptData() {
+    var plaintext = document.getElementById("plaintext").value;
+    if (plaintext.trim() !== "") {
+        var encrypted = crypt.encrypt(plaintext);
+        document.getElementById("encryptedText").value = encrypted;
+    } else {
+        alert("Please enter text to encrypt.");
+    }
+}
+
+function decryptData() {
+    var encryptedText = document.getElementById("encryptedText").value;
+    if (encryptedText.trim() !== "") {
+        var decrypted = crypt.decrypt(encryptedText);
+        document.getElementById("decryptedText").value = decrypted;
+    } else {
+        alert("Please enter encrypted text to decrypt.");
+    }
+}
+</script>
+
+</body>
+</html>
